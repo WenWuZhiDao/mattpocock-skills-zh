@@ -1,0 +1,3 @@
+interface:
+  display_name: "诊断缺陷"
+  short_description: "诊断疑难缺陷和回归问题"

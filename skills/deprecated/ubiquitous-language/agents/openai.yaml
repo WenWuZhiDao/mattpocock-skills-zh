@@ -1,0 +1,5 @@
+interface:
+  display_name: "通用语言"
+  short_description: "构建共享的领域术语表"
+policy:
+  allow_implicit_invocation: false

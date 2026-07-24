@@ -1,0 +1,5 @@
+interface:
+  display_name: "循环我"
+  short_description: "为想要构建的工作流编写规约"
+policy:
+  allow_implicit_invocation: false

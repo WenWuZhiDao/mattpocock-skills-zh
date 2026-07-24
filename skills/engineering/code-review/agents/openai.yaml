@@ -1,0 +1,3 @@
+interface:
+  display_name: "代码审查"
+  short_description: "依据标准和规约审查代码变更"

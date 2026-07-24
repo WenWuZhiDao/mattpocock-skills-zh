@@ -1,0 +1,5 @@
+interface:
+  display_name: "Claude 交接"
+  short_description: "交接给后台智能体"
+policy:
+  allow_implicit_invocation: false

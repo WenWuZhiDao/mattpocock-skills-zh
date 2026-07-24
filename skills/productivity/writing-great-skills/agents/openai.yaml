@@ -1,0 +1,5 @@
+interface:
+  display_name: "编写优秀技能"
+  short_description: "打造可预测技能的原则"
+policy:
+  allow_implicit_invocation: false

@@ -1,0 +1,5 @@
+interface:
+  display_name: "路标"
+  short_description: "将大型工作梳理为决策工单"
+policy:
+  allow_implicit_invocation: false

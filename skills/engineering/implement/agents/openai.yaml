@@ -1,0 +1,5 @@
+interface:
+  display_name: "实现"
+  short_description: "根据规约或工单开展开发"
+policy:
+  allow_implicit_invocation: false

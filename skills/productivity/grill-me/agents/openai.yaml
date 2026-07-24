@@ -1,0 +1,5 @@
+interface:
+  display_name: "拷问我"
+  short_description: "通过访谈打磨计划"
+policy:
+  allow_implicit_invocation: false

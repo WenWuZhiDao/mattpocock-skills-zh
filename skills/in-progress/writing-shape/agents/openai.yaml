@@ -1,0 +1,5 @@
+interface:
+  display_name: "写作成形"
+  short_description: "将原始素材塑造成文章"
+policy:
+  allow_implicit_invocation: false

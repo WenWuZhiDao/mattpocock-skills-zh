@@ -1,0 +1,5 @@
+interface:
+  display_name: "批量拷问我"
+  short_description: "每次一轮提问，逐步打磨计划"
+policy:
+  allow_implicit_invocation: false

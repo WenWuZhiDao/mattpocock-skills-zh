@@ -1,0 +1,5 @@
+interface:
+  display_name: "编辑文章"
+  short_description: "重组并精炼草稿"
+policy:
+  allow_implicit_invocation: false

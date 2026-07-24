@@ -1,0 +1,3 @@
+interface:
+  display_name: "生成练习脚手架"
+  short_description: "生成可通过 lint 的课程练习脚手架"

@@ -1,0 +1,5 @@
+interface:
+  display_name: "转为规约"
+  short_description: "将对话转化为规约"
+policy:
+  allow_implicit_invocation: false

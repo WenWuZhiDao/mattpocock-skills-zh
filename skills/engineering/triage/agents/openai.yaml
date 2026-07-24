@@ -1,0 +1,5 @@
+interface:
+  display_name: "分诊"
+  short_description: "让问题在分诊角色间流转"
+policy:
+  allow_implicit_invocation: false

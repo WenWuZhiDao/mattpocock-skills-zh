@@ -1,4 +1,4 @@
-Quickstart:
+快速开始：
 
 ```bash
 npx skills add mattpocock/skills --skill=improve-codebase-architecture
@@ -8,32 +8,34 @@ npx skills add mattpocock/skills --skill=improve-codebase-architecture
 npx skills update improve-codebase-architecture
 ```
 
-[Source](https://github.com/mattpocock/skills/tree/main/skills/engineering/improve-codebase-architecture)
+[源码](https://github.com/mattpocock/skills/tree/main/skills/engineering/improve-codebase-architecture)
 
 ## 它做什么
 
-`improve-codebase-architecture` 扫描代码库寻找**加深机会（deepening opportunities）**——那些一个浅模块（接口几乎和它所隐藏的东西一样复杂）本可以变成一个深模块的地方——把它们作为一份自包含的可视化 HTML 报告呈现，然后就你挑选的那个进行拷问。
+`improve-codebase-architecture` 扫描一个代码库，寻找**加深机会**——那些浅模块（接口几乎和它所隐藏之物一样复杂）本可以变成深模块的地方——把它们呈现为一份自包含的可视化 HTML 报告，然后就你挑中的那一个进行拷问。
 
-它**不**递给你一份扁平的重构清单。每个候选都必须通过**删除测试（deletion test）**——移除这个模块会把复杂性_集中_到一个更小的接口之后，还是只是把它挪来挪去？只有"集中"的情形才配得上一张卡片。正是那个过滤器阻止报告沦为泛泛的清理建议。
+它**不会**甩给你一份扁平的重构清单。每个候选都必须通过**删除测试**——删掉这个模块会把复杂度*收拢*到一个更小的接口之后，还是只是把它挪个地方？只有"收拢"的情况才配拥有一张卡片。正是这道过滤器，阻止了这份报告沦为泛泛的清理建议。
+
+除非你把它指向某个特定区域，否则它还会把自己的范围收拢到开发实际落地的地方——读取近期提交，向你仍在改动的代码倾斜。加深一个模块的回报在于让日后对它的改动更容易，因此它对仓库中近期有过改动的部分给予额外权重。
 
 ## 何时使用它
 
-你通过输入 `/improve-codebase-architecture` 来调用它——智能体不会自行触及它。
+你通过输入 `/improve-codebase-architecture` 来调用它——智能体不会自行触发它。
 
-把它当作周期性的健康检查触及：每隔几天，或每当一个代码库开始让人觉得要在众多小模块间来回弹跳太多才能理解一个概念时。它读取既有架构并提议在哪里加深它。如果你已经知道想要重新设计的模块，只需要词汇来把它想清楚，改用 [codebase-design](https://aihero.dev/skills-codebase-design)——这个技能是找出候选的勘测；那个是设计工作台。
+把它当作定期体检来用：每隔几天，或者每当一个代码库开始让你觉得，要理解一个概念得在小模块之间来回蹦跶太多次时。它读取现有架构，并提出在哪里加深它。如果你已经知道想重新设计哪个模块，只是需要词汇来把它想清楚，请改用 [codebase-design](https://aihero.dev/skills-codebase-design)——这个技能是找出候选的勘测，那个技能是设计工作台。
 
-## Deepening opportunities
+## 加深机会
 
-整个技能围绕一个理念转：**深度（depth）**。一个深模块在小而稳定的接口后面隐藏大量功能；一个浅模块通过一个几乎和它底下代码一样宽的接口泄漏它的实现。报告猎捕浅薄——那些仅为可测试性而提取的纯函数（真正的 bug 藏在它们如何被调用之中，没有**局部性（locality）**）、跨其**接缝**泄漏的模块、不打开五个文件就无法理解的概念——并提议能修复它的加深。
+整个技能围绕一个理念转动：**深度**。深模块把大量功能隐藏在一个小而稳定的接口之后；浅模块则透过一个几乎和底下代码一样宽的接口漏出自己的实现。报告搜寻的是浅——仅仅为了可测试性而抽出的纯函数，而真正的 bug 藏在它们如何被调用之中（没有**局部性**）、跨自己**接缝**漏出的模块、不打开五个文件就理解不了的概念——并提出能修复它的加深方案。
 
-它说共享的设计词汇（**module**、**interface**、**depth**、**seam**、**adapter**、**leverage**、**locality**），也说来自 `CONTEXT.md` 的你项目自己的领域语言，因此一个候选读起来像"加深 Order 接收模块"，绝不是"重构 FooBarHandler"。
+它说的是共享的设计词汇（**模块**、**接口**、**深度**、**接缝**、**适配器**、**杠杆**、**局部性**），以及来自 `CONTEXT.md` 的你项目自己的领域语言，所以一个候选读起来是"加深 Order 收单模块"，而绝不是"重构 FooBarHandler"。
 
-## The report, then the grill
+## 先报告，再拷问
 
-输出是一个写入你操作系统临时目录的、可在浏览器中打开的 HTML 文件——没有东西落进仓库。每个候选是一张卡片，含涉及的文件、摩擦点、平实英语的解决方案、以局部性和杠杆表述的收益、一张前后对比图，以及一个 `Strong` / `Worth exploring` / `Speculative` 徽章。它以它会最先着手的那个收尾。
+输出是一个可在浏览器中打开的 HTML 文件，写入你操作系统的临时目录——没有任何东西落进仓库。每个候选是一张卡片，包含所涉及的文件、摩擦点、一份平实英文的解决方案、以局部性和杠杆来衡量的收益、一张前后对比图，以及一枚 `Strong` / `Worth exploring` / `Speculative` 徽章。它以自己会最先着手的那一个收尾。
 
-然后它停下并询问你想探索哪一个。挑一个，它就在那个设计上运行 [grilling](https://aihero.dev/skills-grilling) 回路——约束、接缝后面是什么、哪些测试幸存——并在决策成型时就地更新领域模型。
+然后它停下来，问你想探索哪一个。挑一个，它就对那份设计运行 [grilling](https://aihero.dev/skills-grilling) 循环——约束、接缝之后坐落着什么、哪些测试能存活——并在决策成形时当场更新领域模型。
 
 ## 它的位置
 
-`improve-codebase-architecture` 是**周期性维护**——每隔几天运行一次，而不是作为一条链中的步骤。它的邻居有 [codebase-design](https://aihero.dev/skills-codebase-design)，后者拥有每个候选据以书写的深度-与-接缝词汇；[grilling](https://aihero.dev/skills-grilling)，它在你选定候选后走过设计树；以及 [domain-modeling](https://aihero.dev/skills-domain-modeling)，它在重新设计尘埃落定时让 `CONTEXT.md` 和 ADR 保持最新。当你不确定哪个技能或流程契合时，[ask-matt](https://aihero.dev/skills-ask-matt) 会为你路由。
+`improve-codebase-architecture` 是**定期维护**——每隔几天运行一次，而不是作为某条链条中的一步。它的邻居是 [codebase-design](https://aihero.dev/skills-codebase-design)——它拥有每个候选所用的深度与接缝词汇，[grilling](https://aihero.dev/skills-grilling)——一旦你选定一个候选,它就走下决策树，以及 [domain-modeling](https://aihero.dev/skills-domain-modeling)——它在重新设计尘埃落定时让 `CONTEXT.md` 与 ADR 保持最新。当你不确定该用哪个技能或流程时，[ask-matt](https://aihero.dev/skills-ask-matt) 会为你指路。

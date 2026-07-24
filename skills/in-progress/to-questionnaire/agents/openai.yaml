@@ -1,0 +1,5 @@
+interface:
+  display_name: "转为问卷"
+  short_description: "把问题前置汇总到文档中供他人回答"
+policy:
+  allow_implicit_invocation: false

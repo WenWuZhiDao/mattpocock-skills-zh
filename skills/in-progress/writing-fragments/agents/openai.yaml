@@ -1,0 +1,5 @@
+interface:
+  display_name: "写作片段"
+  short_description: "挖掘原始写作片段"
+policy:
+  allow_implicit_invocation: false

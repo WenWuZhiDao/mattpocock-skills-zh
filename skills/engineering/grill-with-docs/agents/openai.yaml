@@ -1,0 +1,5 @@
+interface:
+  display_name: "拷问并写文档"
+  short_description: "拷问设计并撰写其文档"
+policy:
+  allow_implicit_invocation: false

@@ -1,0 +1,5 @@
+interface:
+  display_name: "写作节拍"
+  short_description: "将原始素材组织成节拍"
+policy:
+  allow_implicit_invocation: false

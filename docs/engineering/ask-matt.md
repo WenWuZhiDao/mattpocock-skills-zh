@@ -1,4 +1,4 @@
-Quickstart:
+快速开始：
 
 ```bash
 npx skills add mattpocock/skills --skill=ask-matt
@@ -8,24 +8,24 @@ npx skills add mattpocock/skills --skill=ask-matt
 npx skills update ask-matt
 ```
 
-[Source](https://github.com/mattpocock/skills/tree/main/skills/engineering/ask-matt)
+[源码](https://github.com/mattpocock/skills/tree/main/skills/engineering/ask-matt)
 
 ## 它做什么
 
-`ask-matt` 是本仓库中众技能之上的路由器。你描述你所处的情形；它告诉你哪个技能或流程契合，以及以什么顺序运行它们。
+`ask-matt` 是本仓库中所有技能之上的路由器。你描述自己所处的情境，它会告诉你哪个技能或流程最合适，以及按什么顺序运行它们。
 
-它**自己不做任何工作**。它不拷问、不写 PRD、不修任何东西——它只帮你建立方位。它首先是为了**用户调用**技能而存在：没有东西会替你触发那些技能，所以_你_必须记住它们存在，而 `ask-matt` 就是你把那份记忆卸载给它的对象。它也指向那些你会按名字触及的模型调用技能——`/tdd`、`/diagnosing-bugs`、`/prototype`、`/code-review`，以及两个词汇参考 `/domain-modeling` 和 `/codebase-design`。它回答"哪一个，以及何时"，然后把你交给真正干活的那个技能。
+它**自己不做任何工作**。它不拷问、不写规格、也不修任何东西——它只负责指路。它的存在首先是为了那些**用户主动调用**的技能：没有任何东西会替你触发它们，所以*你*必须记得它们的存在，而 `ask-matt` 就是你把这份记忆卸载出去的地方。它也会指向那些你会按名字直接调用的模型可调用技能——`/tdd`、`/diagnosing-bugs`、`/prototype`、`/code-review`，以及两个术语参考：`/domain-modeling` 和 `/codebase-design`。它回答"用哪个、什么时候用"，然后把你交接给真正干活的那个技能。
 
 ## 何时使用它
 
-你通过输入 `/ask-matt` 来调用它——智能体不会自行触及它。
+你通过输入 `/ask-matt` 来调用它——智能体不会自行触发它。
 
-每当你不确定某个情形需要哪个技能或流程时就触及它：你有一个想法却不知从何入手，有一堆 bug 报告却不知它们是否该交给 `/triage`，或者两个看起来可以互换的技能你分不清。如果你已经知道你想要的技能，就跳过路由器直接调用它。
+每当你不确定某个情境该用哪个技能或流程时，就用它：你有个想法但不知从何下手，你手头一堆 bug 报告但不确定它们是不是该走 `/triage`，或者两个技能看起来可以互换而你分不清它们。如果你已经知道自己想要哪个技能，就跳过路由器，直接调用它。
 
-## Flows, not just skills
+## 是流程，不只是技能
 
-`ask-matt` 给你用来思考的理念是**流程（flow）**——一条_穿过_众技能的路径，而不是单个技能。大多数工作沿一条**主流程**运行（想法 → 交付：grill → PRD → issues → implement → review），两条**入口**汇入其中（针对进来的 bug 和请求的分诊车道；一条产生想法的代码库健康车道），其余一切都是你单独触及的**独立技能**。问一个问题，你就会被放到正确的流程、正确的步骤上——而不只是被塞了一个工具。
+`ask-matt` 给你的思考工具是**流程**——一条*穿过*多个技能的路径，而不是单个技能。大部分工作都沿着一条**主流程**运行（想法 → 上线：拷问 → 规格 → 工单 → 实现 → 评审），两条**入口匝道**汇入其中（一条处理进来的 bug 与需求的分诊车道；一条产生想法的代码库健康车道），其余的一切都是你单独取用的**独立技能**。问一个问题，你就会被安置到正确的流程、正确的步骤上——而不只是拿到一个工具。
 
 ## 它的位置
 
-`ask-matt` 是**路由器**——凌驾于整套之上的独立地图。它是每个其他文档页面以 [ask-matt](https://aihero.dev/skills-ask-matt) 回链的节点，所以它绝不_置身_于某条链中；它指_向_每条链。从这里你最常落到 [grill-with-docs](https://aihero.dev/skills-grill-with-docs)，主流程的开端，或 [triage](https://aihero.dev/skills-triage)，你未创建之工作的入口。当连路由器自身的图景都过时了，它的 [Source](https://github.com/mattpocock/skills/tree/main/skills/engineering/ask-matt) 就是权威地图。
+`ask-matt` 是**路由器**——凌驾于整套技能之上的独立地图。它是其他每个文档页都会链接回来的节点 [ask-matt](https://aihero.dev/skills-ask-matt)，所以它从不身处任何链条*之中*；它指向每一条链条。从这里出发，你最常落到 [grill-with-docs](https://aihero.dev/skills-grill-with-docs)——主流程的开端，或者 [triage](https://aihero.dev/skills-triage)——处理非你创建的工作的入口匝道。当连路由器自身的图景都过时了，它的[源码](https://github.com/mattpocock/skills/tree/main/skills/engineering/ask-matt)就是权威的地图。
