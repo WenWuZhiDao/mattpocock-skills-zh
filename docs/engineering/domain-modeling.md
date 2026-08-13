@@ -1,46 +1,86 @@
-快速开始：
-
-```bash
-npx skills add mattpocock/skills --skill=domain-modeling
-```
-
-```bash
-npx skills update domain-modeling
-```
-
-[源码](https://github.com/mattpocock/skills/tree/main/skills/engineering/domain-modeling)
-
 ## 它做什么
 
-`domain-modeling` 在你设计的同时构建并打磨项目的**通用语言（ubiquitous language）**——挑战含糊的术语，用具体场景压力测试各种关系，并在术语与决策刚刚成形的那一刻就把它们写下来。
+`domain-modeling` 在你设计过程中构建并磨锐一个项目的**通用语言（ubiquitous language）**——挑战一个与词汇表冲突的术语，在你用了含糊词的地方逼出一个精确的词，并用一个具体场景对某个关系做压力测试，直到边界确切无误。
 
-这是**主动**的功夫，而非被动的。仅仅读一读 `CONTEXT.md` 借用其中的词汇，是任何技能都能做的一行习惯动作；而这个技能是为你*正在改变*模型的时刻准备的——铸造一个规范术语、抓住代码与你刚说的话之间的矛盾、记录一个难以逆转的决策。它还让术语表保持干净：`CONTEXT.md` 只是一份术语表,别无其他——没有实现细节，没有规格，没有草稿本。
+它是**主动的**训练，而非被动的那种。读 `CONTEXT.md` 来借用它的词汇是任何技能都能做的一行习惯；这个技能是为你*正在改变*模型时准备的。这正是它会打断你的原因。它在一个术语被解决的那一刻——就在对话中途——把它写进 `CONTEXT.md`，而不是在结尾产出一份整洁的词汇表；因为批处理的版本是一次[会话](https://www.aihero.dev/ai-coding-dictionary/session)的摘要，而内联的版本才是会话的真实产出。
 
 ## 何时使用它
 
-输入 `/domain-modeling`，或者当任务契合时智能体会自动触发它——当你在敲定术语、化解一个多义词，或记录一项架构决策时。
+输入 `/domain-modeling`，或者当某个任务契合时代理会自动使用它。实际上，自动调用是这个技能最弱的部分：当 `grill-with-docs` 或 `wayfinder` 说要加载它时，[模型](https://www.aihero.dev/ai-coding-dictionary/model)经常加载 `grilling` 而跳过这一个。如果一次[盘问](https://www.aihero.dev/ai-coding-dictionary/grilling)会话跑完而 `CONTEXT.md` 在结尾原封未动，那就是发生了这种情况——把它连同另一个技能一起按名调用。
 
-当*用词*本身就是问题时，就用它：两个人对"取消（cancellation）"各有所指，"账户（account）"同时承担着三种职责，或者一次设计对话总在某个从未被精确命名的概念上卡壳。如果反过来，是模块的*形状*才是问题——接缝该落在哪、接口有多深——那就用 [codebase-design](https://aihero.dev/skills-codebase-design)。如果你想在动手构建之前让计划本身受到盘问，那就用 [grilling](https://aihero.dev/skills-grilling)。
+当*词语*是问题时使用它：
+
+| 情境 | 动作 |
+| --- | --- |
+| 两个人说「cancellation」时各指不同的东西 | `domain-modeling`——选定规范术语，把另一个列在 `_Avoid_` 下 |
+| 「Account」在三个文件里干着三份活 | `domain-modeling`——把它拆成 Customer 和 User |
+| 你刚做了一个难以逆转的架构选择 | `domain-modeling`——如果该选择过了门槛，它会给出一份 ADR |
+| 模块的*形状*是问题——接缝放哪、接口有多深 | [codebase-design](https://aihero.dev/skills-codebase-design) |
+| 你想在构建之前让整个计划被拷问 | [grill-with-docs](https://aihero.dev/skills-grill-with-docs)，它在底层驱动这个技能 |
+| 你想查一个术语，而非改它 | 什么都不用。读 `CONTEXT.md`。它是个文件。 |
 
 ## 前置条件
 
-这个技能写入两个地方，两者都是惰性创建——只在有东西要记录时才创建。已敲定的术语进入根目录的 `CONTEXT.md`（或者，在一个由 `CONTEXT-MAP.md` 标记的多上下文仓库中，进入各上下文自己的 `CONTEXT.md`）。决策进入 `docs/adr/`。事先什么都不需要存在；第一个敲定的术语会创建术语表，第一次真正的权衡会创建 ADR。
+一开始不需要什么。这个技能写入两个地方，并对两者都惰性创建：
 
-## 术语表 vs. ADR
+- 仓库根目录的 **`CONTEXT.md`**，由第一个被解决的术语创建。在根目录有 `CONTEXT-MAP.md` 的仓库里，术语改为进入该 map 所指向的、按上下文划分的 `CONTEXT.md`。
+- **`docs/adr/`**，由第一份过了门槛的 ADR 创建。
 
-两种产物，两条不同的标准：
+开始之前什么都不需要存在，也不会有任何东西被投机地创建。
 
-- **术语表**（`CONTEXT.md`）捕捉语言。每当一个含糊的术语被定为规范，就当场写下来——不批量攒着——好让共享词汇与对话保持同步。它冷酷地不含任何实现细节。
-- **ADR** 捕捉一项决策，而且门槛很高：仅当这个选择**难以逆转**、**没有上下文就令人意外**、且**是一次真实权衡的结果**时才提出。三者缺一，就没有 ADR。正是这一点让 `docs/adr/` 成为重大分岔的记录，而不是一本流水账。
+## 两种产物，两道门槛
 
-让这一切豁然开朗的动作是：当你陈述某样东西如何运作时，这个技能会交叉引用代码并把矛盾摆出来——"你的代码取消的是整个 Order，可你刚才说部分取消是可能的——到底哪个对？"语言与代码被迫达成一致。
+词汇表和 ADR 被held在不同的标准上，而把它们混为一谈正是这个技能里大多数麻烦的来源。
 
-## 有意拆分出来
+| | `CONTEXT.md` | `docs/adr/NNNN-slug.md` |
+| --- | --- | --- |
+| 承载 | 术语。一样东西**是什么**，用一两句话，被拒的同义词放在 `_Avoid_` 下 | 一个决定，用一到三句话：背景、选择、理由 |
+| 写入门槛 | 一个含糊的术语变成了规范 | **三者兼备**：难以逆转、没有背景就令人意外、是一次真实权衡的结果 |
+| 写入方式 | 内联，术语敲定的那一刻 | 提供，而非默认 |
+| 从不承载 | 实现细节、一份[规格](https://www.aihero.dev/ai-coding-dictionary/spec)、一块草稿板、通用编程概念 | 本次会话所做每个选择的流水账 |
 
-`domain-modeling` 是构建项目通用语言的**唯一真实来源**，被拆分成它自己的模型可调用技能，以便任何其他技能都能取用它。[grill-with-docs](https://aihero.dev/skills-grill-with-docs) 倚赖它在一次拷问会话进行的同时记录术语与决策，[triage](https://aihero.dev/skills-triage) 用它让工单保持项目自己的用词，[improve-codebase-architecture](https://aihero.dev/skills-improve-codebase-architecture) 在工作时也会取用它。
+ADR 的三项测试漏掉任何一项，就没有 ADR。一个易于逆转的决定反正会被逆转掉；一个不令人意外的决定不是任何人的疑问；一个没有真实备选的决定记录的只是你做了显而易见的事。
 
-保持它独立意味着你也可以直接取用它——作为一份关于如何打磨模型的**参考**——而不必投入那些技能所强制的步骤。语言活在一个地方，而所有需要它的东西都指向那里。
+`CONTEXT.md` 那条规则才是真正要抓住的，因为它是现场里会破的那条。**它是一份词汇表，别无他物。** 不加约束的话，模型会把「写入 `CONTEXT.md`」当作把你给的每个答案都持久化下来的许可，文件于是变成一份不断增长的规格——这是这个技能在多个模型上被报告最多的问题。
+
+## 交叉引用，及其止步之处
+
+让这个技能豁然开朗的动作：当你陈述某样东西如何运作时，它检查代码并把矛盾浮现出来。*「你的代码取消的是整个 Order，但你刚说部分取消是可能的——哪个对？」*语言和代码被逼着当面达成一致，然后才去改动其中任何一个。
+
+这个限制值得知道。它交叉引用的是**代码**和已提交的 `CONTEXT.md`/ADR，别无其他。它不搜索你的 issue 追踪器，所以一个几个月前在某个已关闭 issue 里被辩论清楚并刻意敲定的命名冲突，会被当作全新的一样浮现出来。[有一个开放的请求](https://github.com/mattpocock/skills/issues/717)要修这一点；在那之前，绕行之法是把这条指令放进你自己的 `docs/agents/domain.md`，那是技能已经会读的。
+
+## 常见问题
+
+**我的 `CONTEXT.md` 有 500 行。1000 行。3000 行。我该怎么办？**
+体积是症状，不是病——文件吸纳了从来就不是词汇表料的实现细节和决定。修复是一条直接的指令：`/grill-with-docs make my CONTEXT.md more concise and remove any implementation details from it`。对一个臃肿的文件跑一遍，大部分内容都会去掉。只有当文件真的精简了、却仍覆盖两个读者不会想同时把握的领域时，才去动 `CONTEXT-MAP.md` 拆分；拆分一个臃肿的文件只会给你好几个臃肿的文件。这个技能在此处的指导还不足以从一开始就防止增长，追踪此事的 issue 仍然开放。
+
+**为什么是 `CONTEXT.md` 而不是 `GLOSSARY.md`？**
+这是整套技能里被争论最多的命名问题，且没有定论。反对现名的理由很充分：如果它是「一份词汇表，别无他物」，那 `GLOSSARY.md` 就直说了这一点，而且——正如一位读者所说——「有了 AI 代理，一切都是[上下文](https://www.aihero.dev/ai-coding-dictionary/context)」。支持它的理由是那张 map：`CONTEXT-MAP.md` 指向若干个 `CONTEXT.md` 文件读起来很自然，而 `GLOSSARY-MAP.md` 则不然，而且 `context` 是 DDD 里表示模型某个有界区域的常驻词。至少有一个人纯粹为了重命名这个文件而维护着一个本地 fork。你也可以照做，但这套里其他每个技能都找 `CONTEXT.md`，所以一次重命名意味着给它们全部打补丁。
+
+**`/ubiquitous-language` 去哪了？**
+它被移除了，且没有被弃用。它的活挪进了 `domain-modeling`，后者持续维护整个模型，而非从一次对话里倒出一份词汇表。词汇的强制执行变得更承重了，而非更轻——它现在跑在 grilling、triage 和 mapping 之下，而不是作为一个你得记着去做的单独环节。
+
+**我怎么给一个完全没有词汇表的代码库弄一份出来？**
+明确要它，而不是等它慢慢积累。`/grill-with-docs help me scaffold my existing repo with a CONTEXT.md` 是文档记录的路径；要预料到一场漫长的拷问——一位用户报告在文件成形前问了 50 多个问题。在一个棕地仓库上，顺带的使用建立词汇表实在太慢。
+
+**我能保留领域模型、却用自己的 ADR 格式吗？**
+今天做不干净。词汇表那一半和 ADR 那一半装在一个技能里，所以一个有既定 ADR 约定的团队——不同的模板、不同的位置、不同的命名——会得到与其内部风格相冲突的指令。当前的选项是把技能拷到本地并编辑它，或者在你仓库自己的 agent 文档里覆盖 ADR 约定。把两者拆开是[一个开放的请求](https://github.com/mattpocock/skills/issues/557)。
+
+**词汇表真的物有所值吗？它是又一个要评审的产物，而且会过时。**
+有时并不值，而在哪里不值，值得诚实以对。DDD 越接近实现就越没用——收益在上游，在命名和概念对齐上，而不在聚合和分层仪式上。同义词控制在命名边界处要紧：模块名、表名、状态枚举、issue 标题、CLI 命令。它在普通散文里要紧得多的少。还有一个活跃的反对意见：领域术语压缩的是已经共享它们的*人与人之间*的沟通，而代理对平实英语的描述反应是一样的——按这种解读，词汇表的价值在于让你和你的评审者与代理正在做的事保持对齐，而不在于让代理更好。在一个一天的构建上，跳过它。而一份未经评审、由代理撰写的词汇表比没有更糟：它变成听起来自信的传说，后续会话把它当真理。
+
+**它能替我把含糊的提示词变成领域语言吗？**
+不能，也没有计划做那样一个技能。一门你自己都不懂的领域语言，一旦写下来就成了毫无意义的胡话。这个技能在你有了理解之后强制执行精确——它不制造你没有的词汇。相关的陷阱是用领域词却不做建模：把对的名词摆在错的概念结构之上，产出读起来正确、实则不然。
+
+## 它生效的标志
+
+- 它在你话说到一半时打断你，问你两样东西里指的是哪个，而不是挑一个继续往下走。
+- `CONTEXT.md` 在对话**期间**变化，而不是在结尾一阵爆发。
+- 它拒绝为一个你明天就能撤销的东西写 ADR——并说出三项测试里哪一项没过。
+- 新条目用一两句话定义一样东西*是什么*，并在 `_Avoid_` 下指出你正在放弃的词。
+- 当你的代码和你的句子不一致时，它把你的代码引回来给你看。
+- `CONTEXT.md` 变短的次数和变长的次数一样多。
 
 ## 它的位置
 
-`domain-modeling` 是一个**随时可取用的独立技能**，它*在其他技能之下*运行的频率不亚于作为某个固定步骤运行。它最近的邻居是 [codebase-design](https://aihero.dev/skills-codebase-design)，因为正是共享语言让你能精确地命名一个深模块及其接缝；在下游，一份稳定的术语表恰恰是 [to-spec](https://aihero.dev/skills-to-spec) 综合成一份用项目自己的用词写就的规格所需的东西。当你不确定该用哪个技能或流程时，[ask-matt](https://aihero.dev/skills-ask-matt) 会为你指路。
+`domain-modeling` 是一个**模型调用型参考**，它跑在其他技能*之下*的次数多于独立运行。[grill-with-docs](https://aihero.dev/skills-grill-with-docs) 通过一次盘问会话驱动它，[wayfinder](https://aihero.dev/skills-wayfinder) 在绘制地图时加载它，[triage](https://aihero.dev/skills-triage) 用它把[工单](https://www.aihero.dev/ai-coding-dictionary/ticket)保持在项目自己的词语里，而 [improve-codebase-architecture](https://aihero.dev/skills-improve-codebase-architecture) 在决定结晶时调用它。它最近的同胞是 [codebase-design](https://aihero.dev/skills-codebase-design)：两者是其他一切之下的词汇层，这个针对*领域*，那个针对模块的*形状*。它也可直接触达，当你想要这份训练、却不想承诺那个通常会拉入它的技能的各个步骤时。当你不确定哪个技能契合时，[ask-matt](https://aihero.dev/skills-ask-matt) 会为你路由。

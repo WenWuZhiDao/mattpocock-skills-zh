@@ -1,3 +1,0 @@
-interface:
-  display_name: "请求重构计划"
-  short_description: "规划一次安全的渐进式重构"

@@ -1,18 +1,18 @@
 ---
 name: claude-handoff
-description: 把当前对话交接给一个全新的后台智能体，让它立即接手工作。
-argument-hint: "下一次会话将用于做什么？"
+description: 把当前对话移交给一个全新的后台 agent，它会立即接手工作。
+argument-hint: "下一个会话将用于做什么？"
 disable-model-invocation: true
 ---
 
-编写一份当前对话的交接摘要，让一个全新的智能体能够接手继续工作。不要保存它，而是启动一个后台智能体，用该摘要作为它的提示作为种子：`claude --bg --name "<descriptive name>" "<handoff summary>"`。它在当前工作目录中启动并立即返回；用户通过 `claude agents` 来管理它。
+写一份当前对话的移交摘要，好让一个全新的 agent 能继续这项工作。不要把它保存下来，而是启动一个后台 agent，以这份摘要作为它的 prompt 种子：`claude --bg --name "<descriptive name>" "<handoff summary>"`。它会在当前工作目录中启动并立即返回；用户用 `claude agents` 来管理它。
 
-始终传入 `-n`/`--name` 并给一个描述性的名字（例如 `--name "Fix login bug"`）—— 它设定在任务列表、会话选择器和终端标题中显示的名称。
+始终传入 `-n`/`--name` 并给一个描述性名称（例如 `--name "Fix login bug"`）——它设置的是在任务列表、会话选择器和终端标题中显示的名称。
 
-在摘要中加入一个"建议技能"章节，列出该智能体应当调用的技能。
+在摘要中包含一个 "suggested skills" 部分，用来建议该 agent 应当调用的技能。
 
-不要重复其他产物（PRD、方案、ADR、issue、提交、diff）中已经记录的内容。改为通过路径或 URL 引用它们。
+不要重复那些已经被其他产物（规格、计划、ADR、issue、commit、diff）记录过的内容。改为通过路径或 URL 引用它们。
 
-对任何敏感信息（例如 API 密钥、密码或个人可识别信息）进行脱敏处理 —— 这份摘要会成为该智能体的提示。
+删改任何敏感信息，例如 API key、密码或个人可识别信息——这份摘要会成为 agent 的 prompt。
 
-如果用户传入了参数，将其视为对下一次会话所要聚焦内容的描述，并据此调整摘要。
+如果用户传入了参数，就把它们当作对下一个会话将聚焦什么的描述，并据此调整摘要。

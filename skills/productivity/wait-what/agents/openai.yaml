@@ -1,0 +1,5 @@
+interface:
+  display_name: "等等，什么"
+  short_description: "换个说法再讲一遍——更简单些，补上我缺失的背景"
+policy:
+  allow_implicit_invocation: false

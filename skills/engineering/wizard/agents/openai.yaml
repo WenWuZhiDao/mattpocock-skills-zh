@@ -1,0 +1,3 @@
+interface:
+  display_name: "向导"
+  short_description: "生成一个交互式安装向导"
